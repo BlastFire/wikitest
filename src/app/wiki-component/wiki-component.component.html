@@ -1,5 +1,8 @@
-<h1>Wiki ComponentM</h1>
+<h1>Wiki Component</h1>
 <input #term (keyup)="search(term.value)" />
+
+<h2>Second Component</h2>
+<input type="text" [formControl]="myInput" />
 
 <ul>
   <li *ngFor="let item of items | async">{{item}}</li>
