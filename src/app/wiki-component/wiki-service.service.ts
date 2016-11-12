@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { Jsonp, URLSearchParams, Http, RequestOptions, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
 export class WikiServiceService {
 
-  constructor(private jsonp: Jsonp) { }
+  constructor(private jsonp: Jsonp, private http: Http) { }
 
   search(term: string) {
     let wikiUrl = "http://en.wikipedia.org/w/api.php";
@@ -18,6 +18,16 @@ export class WikiServiceService {
     return this.jsonp
                .get(wikiUrl, { search: params })
                .map(response => <string[]> response.json()[1]);
+  }
+
+  search2() {
+    let phUrl = "https://jsonplaceholder.typicode.com/posts";
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    
+    return this.http.get(phUrl, options).map(
+      (data: Response) => data.json());
   }
 
 }
