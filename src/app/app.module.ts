@@ -6,11 +6,15 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { WikiComponentComponent } from './wiki-component/wiki-component.component';
 import { WikiServiceService } from './wiki-component/wiki-service.service';
+import { CustomDirectiveContainerComponent } from './custom-directive-container/custom-directive-container.component';
+import { MyHighlightDirective } from './custom-directive-container/my-highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WikiComponentComponent
+    WikiComponentComponent,
+    CustomDirectiveContainerComponent,
+    MyHighlightDirective
   ],
   imports: [
     BrowserModule,

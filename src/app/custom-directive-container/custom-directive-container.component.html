@@ -1,0 +1,11 @@
+<p appMyHighlight="blue">my yellow text1</p>  <!-- (when using css(?) value instead of property, no brackets ?) -->
+<br />
+<h1>Color picker</h1>
+
+<div>
+  <input type="radio" name="colors" (click)="colorFromBindingInHtml='lightgreen'">Green
+  <input type="radio" name="colors" (click)="colorFromBindingInHtml='yellow'">Yellow
+  <input type="radio" name="colors" (click)="colorFromBindingInHtml='cyan'">Cyan
+</div>
+<p [appMyHighlight]="colorFromBindingInHtml">my yellow text2</p>
+<p [appMyHighlight]="colorFromBindingInHtml" [defaultColor]="_defaultColor">my yellow text2</p>
