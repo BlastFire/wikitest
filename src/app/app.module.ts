@@ -8,13 +8,17 @@ import { WikiComponentComponent } from './wiki-component/wiki-component.componen
 import { WikiServiceService } from './wiki-component/wiki-service.service';
 import { CustomDirectiveContainerComponent } from './custom-directive-container/custom-directive-container.component';
 import { MyHighlightDirective } from './custom-directive-container/my-highlight.directive';
+import { TourOfHeroesComponent } from './tour-of-heroes/tour-of-heroes.component';
+import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WikiComponentComponent,
     CustomDirectiveContainerComponent,
-    MyHighlightDirective
+    MyHighlightDirective,
+    TourOfHeroesComponent,
+    MyHeroDetailComponent
   ],
   imports: [
     BrowserModule,

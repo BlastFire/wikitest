@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer, HostListener } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer, HostListener, EventEmitter, Output } from '@angular/core';
 
 @Directive({
   selector: '[appMyHighlight]'
@@ -13,7 +13,6 @@ export class MyHighlightDirective {
   @Input() set defaultColor(colorName: string) {
     this._defaultColor = colorName || this._defaultColor;
   }
-
 
   @HostListener('mouseenter') onMouseEnter() {
      this.highlight(this.colorFromBindingInHtml || this._defaultColor);
