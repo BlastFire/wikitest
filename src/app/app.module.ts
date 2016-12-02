@@ -8,8 +8,9 @@ import { WikiComponentComponent } from './wiki-component/wiki-component.componen
 import { WikiServiceService } from './wiki-component/wiki-service.service';
 import { CustomDirectiveContainerComponent } from './custom-directive-container/custom-directive-container.component';
 import { MyHighlightDirective } from './custom-directive-container/my-highlight.directive';
-import { TourOfHeroesComponent } from './tour-of-heroes/tour-of-heroes.component';
+import { HeroesComponent } from './tour-of-heroes/heroes.component';
 import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component';
+import { HeroService } from './tour-of-heroes/hero.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component
     WikiComponentComponent,
     CustomDirectiveContainerComponent,
     MyHighlightDirective,
-    TourOfHeroesComponent,
+    HeroesComponent,
     MyHeroDetailComponent
   ],
   imports: [
@@ -27,7 +28,7 @@ import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component
     JsonpModule,
     ReactiveFormsModule
   ],
-  providers: [WikiServiceService],
+  providers: [WikiServiceService, HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
