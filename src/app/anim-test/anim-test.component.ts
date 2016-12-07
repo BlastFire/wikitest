@@ -14,7 +14,8 @@ import { Component, OnInit, Input, trigger, state, style, transition, animate } 
             opacity: 0,
             transform: 'translateY(-100%)'
           }),
-          animate(100)
+          animate(100),
+          animate('0.8s 0.1s')
         ])
       ]
     )
