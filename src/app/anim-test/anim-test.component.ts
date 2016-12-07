@@ -5,33 +5,43 @@ import { Component, OnInit, Input, trigger, state, style, transition, animate } 
   templateUrl: './anim-test.component.html',
   styleUrls: ['./anim-test.component.css'],
   animations: [
-    
+
     trigger(
       'flyInOut', [
-        state('in', style({opacity: 1,transform: 'translateY(0)'})),
+        state('in', style({ opacity: 1, transform: 'translateY(0)' })),
         transition('void => *', [
           style({
             opacity: 0,
             transform: 'translateY(-100%)'
           }),
-          animate(400)
+          animate(100)
         ])
       ]
     )
-    
+
   ]
 })
 export class AnimTestComponent implements OnInit {
+  items: String[] = [];
+  menu: Array<String> = ["Home", "Product", "Services", "Jobs", "About"];
 
-  menu: Array<String> = ["Home", "Product", "Services", "Jobs", "About"]; 
-
-  constructor() { 
-    for(let m in this.menu) {
-      console.log(this.menu[m]);
-    }
+  constructor() {
   }
 
   ngOnInit() {
+    this.doNext();
   }
-
+  doNext() {
+    var menu = this.menu;
+    var items = this.items;
+    for (var m = 0; m < menu.length; m++) {
+      var tim = setTimeout(function(y) {    
+        items.push(menu[y])
+        if(y >= (menu.length - 1)) {
+          clearTimeout(tim);
+          console.log('clear')
+        }
+      }, m*500, m);
+    }
+  }
 }
