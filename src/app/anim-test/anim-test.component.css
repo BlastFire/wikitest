@@ -1,0 +1,19 @@
+.anim-container {
+    width: 600px;
+    height: 50px;
+    background-color: #cbe2ed;
+    margin: 100px 0 0 100px;
+}
+
+li {
+    display: inline-block;    
+}
+
+.mlink {
+    display: block;
+    color: #464843;
+    list-style: none;
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 20px 25px;
+}

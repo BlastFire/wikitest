@@ -1,0 +1,10 @@
+<div class="anim-container">
+  <ul>
+    <li><a href="#" [@flyInOut] class="mlink">Home</a></li>
+    <li><a href="#" class="mlink">Products</a></li>
+    <li><a href="#" class="mlink">Services</a></li>
+    <li><a href="#" class="mlink">Jobs</a></li>
+    <li><a href="#" class="mlink">About</a></li>
+    <li [@flyInOut] class="mlink" *ngFor="let h of menu">{{ h }}</li>
+  </ul>
+</div>

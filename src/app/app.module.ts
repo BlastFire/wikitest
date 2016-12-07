@@ -11,6 +11,7 @@ import { MyHighlightDirective } from './custom-directive-container/my-highlight.
 import { HeroesComponent } from './tour-of-heroes/heroes.component';
 import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component';
 import { HeroService } from './tour-of-heroes/hero.service';
+import { AnimTestComponent } from './anim-test/anim-test.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeroService } from './tour-of-heroes/hero.service';
     CustomDirectiveContainerComponent,
     MyHighlightDirective,
     HeroesComponent,
-    MyHeroDetailComponent
+    MyHeroDetailComponent,
+    AnimTestComponent
   ],
   imports: [
     BrowserModule,
