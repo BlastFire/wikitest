@@ -12,6 +12,9 @@ import { HeroesComponent } from './tour-of-heroes/heroes.component';
 import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component';
 import { HeroService } from './tour-of-heroes/hero.service';
 import { AnimTestComponent } from './anim-test/anim-test.component';
+import { FormComponent } from './form/form.component';
+import { FormLeftComponent } from './form/form-left.component';
+import { FormRightComponent } from './form/form-right.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AnimTestComponent } from './anim-test/anim-test.component';
     MyHighlightDirective,
     HeroesComponent,
     MyHeroDetailComponent,
-    AnimTestComponent
+    AnimTestComponent,
+    FormComponent,
+    FormLeftComponent,
+    FormRightComponent,
   ],
   imports: [
     BrowserModule,

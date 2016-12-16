@@ -1,0 +1,22 @@
+<div class="test-form-col">
+<form (ngSubmit)="onSubmit(formsubmit)" #formsubmit="ngForm">
+    <div class="form-group col-xs-6">
+        <label for="firstname">Firstname:</label>
+        <input type="text" class="form-control" placeholder="firstname" id="firstname" ngModel name="firstname" >
+    </div>
+    <div class="form-group col-xs-6">
+        <label for="firstname">Lastname:</label>
+        <input type="text" class="form-control" placeholder="lastname" id="lastname" ngModel name="lastname" >
+    </div>
+    <div class="form-group col-xs-6">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" placeholder="email" id="email" ngModel name="email" >
+    </div>
+    <div class="form-group col-xs-6">
+        <label for="email">Gender:</label>
+        <input type="text" class="form-control" placeholder="gender" id="gender" ngModel name="gender" >
+    </div>
+    <button type="submit" class="btn btn-default submit-button">Submit</button>
+</form>
+</div>
+
