@@ -12,6 +12,7 @@ export class FormLeftComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     console.log(form.value)
+    console.log('asd')
   }
 
   ngOnInit() {
