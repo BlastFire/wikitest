@@ -30,8 +30,18 @@ export class AnimTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.doNext();
+    //this.doNext();
+    this.doNext1();
   }
+
+  doNext1() {
+  let i = 0, myI = setInterval(() => {
+   if(this.items.length == this.menu.length-1) clearInterval(myI);
+   this.items.push(this.menu[i]);
+   i++;
+    }, 500);
+  }
+
   doNext() {
     var menu = this.menu;
     var items = this.items;
