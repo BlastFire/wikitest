@@ -1,5 +1,8 @@
-<div class="test-form-col">
-   <p style="background-color:red">
-       asd
-   </p>
+<div class="test-form-col col-md-6">
+   <button class="btn btn-default" id="animate-button" (click)="animate()" >Animate</button>
+   <div>
+       <div [@flyInOut] *ngFor="let i of rightArr" class="square-holder col-md-6">
+            {{ i }}
+        </div>
+   </div>
 </div>

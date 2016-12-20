@@ -10,9 +10,13 @@ export class FormLeftComponent implements OnInit {
 
   constructor() { }
 
+  leftArr: String[] = [];
+
   onSubmit(form: NgForm) {
-    console.log(form.value)
-    console.log('asd')
+    this.leftArr = [];
+    for(let i in form.value) {
+      this.leftArr.push(form.value[i])
+    }
   }
 
   ngOnInit() {
