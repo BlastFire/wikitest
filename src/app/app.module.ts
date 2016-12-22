@@ -12,9 +12,10 @@ import { HeroesComponent } from './tour-of-heroes/heroes.component';
 import { MyHeroDetailComponent } from './tour-of-heroes/my-hero-detail.component';
 import { HeroService } from './tour-of-heroes/hero.service';
 import { AnimTestComponent } from './anim-test/anim-test.component';
-import { FormComponent } from './form/form.component';
-import { FormLeftComponent } from './form/form-left.component';
-import { FormRightComponent } from './form/form-right.component';
+import { MyFormComponent } from './my-form/my-form.component';
+import { MyFormLeftComponent } from './my-form/my-form-left.component';
+import { MyFormRightComponent } from './my-form/my-form-right.component';
+import { DataManagerService } from './my-form/data-manager.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,9 @@ import { FormRightComponent } from './form/form-right.component';
     HeroesComponent,
     MyHeroDetailComponent,
     AnimTestComponent,
-    FormComponent,
-    FormLeftComponent,
-    FormRightComponent,
+    MyFormComponent,
+    MyFormLeftComponent,
+    MyFormRightComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,7 @@ import { FormRightComponent } from './form/form-right.component';
     JsonpModule,
     ReactiveFormsModule
   ],
-  providers: [WikiServiceService, HeroService],
+  providers: [WikiServiceService, HeroService, DataManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
