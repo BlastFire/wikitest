@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, Input, HostListener,
+  trigger, state, style, transition, animate } from '@angular/core';
 import { DataManagerService } from './data-manager.service';
-import { Person } from './person';
+import { User } from './user.interface';
 
 @Component({
   selector: 'app-form-right',
@@ -24,14 +25,22 @@ import { Person } from './person';
 })
 export class MyFormRightComponent implements OnInit {
 
-  personData: Person[] = [];
+  personData: User[] = [];
 
   constructor(private ds: DataManagerService) { }
 
+  // @HostListener('click') onClick() {
+  //   console.log("clicked");
+  // }
+
   ngOnInit() {
-    this.ds.getData().subscribe((person: Person) => {
+    this.ds.getData().subscribe((person: User) => {
       this.personData = this.ds.getDataArr();
     });
+  }
+
+  crown(e: any) {
+    console.log(e);
   }
 
 }

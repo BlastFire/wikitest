@@ -16,6 +16,7 @@ import { MyFormComponent } from './my-form/my-form.component';
 import { MyFormLeftComponent } from './my-form/my-form-left.component';
 import { MyFormRightComponent } from './my-form/my-form-right.component';
 import { DataManagerService } from './my-form/data-manager.service';
+import { MyFormLeftBuilderComponent } from './my-form/my-form-left-builder.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DataManagerService } from './my-form/data-manager.service';
     MyFormComponent,
     MyFormLeftComponent,
     MyFormRightComponent,
+    MyFormLeftBuilderComponent,
   ],
   imports: [
     BrowserModule,

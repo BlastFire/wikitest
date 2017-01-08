@@ -15,7 +15,7 @@ export class MyFormLeftComponent implements OnInit {
   constructor(private ds: DataManagerService) { }
 
   onSubmit(form: NgForm) {
-    this.ds.addItem(new Person(form.value.firstname, form.value.lastname, form.value.email, form.value.gender));
+    //this.ds.addItem(new Person(form.value.firstname, form.value.lastname, form.value.email, form.value.gender));
     //this.ds.addItem(this.person);
     form.reset();
     console.log(this.ds.getDataArr());
