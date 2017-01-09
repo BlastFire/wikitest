@@ -15,17 +15,46 @@ export class MyFormLeftBuilderComponent implements OnInit {
   constructor(private fb: FormBuilder, private ds: DataManagerService) { }
 
   ngOnInit() {
+    //init the form
     this.userForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: [''],
       email: ['', Validators.required],
       gender: ['']
     });
+
+    //populates form with data from transmited object
+    this.ds.getData({edit: true}).subscribe((person: User) => {
+
+      //INFO:
+      //the object which is returned contains another key: value pair ( id: number ),
+      //so using setValue will result error.
+      //patchValue instead ignores non matching keys
+      //more info https://toddmotto.com/angular-2-form-controls-patch-value-set-value
+      this.userForm.patchValue(person);
+
+      console.log(JSON.stringify(person));
+    });
+
   }
 
   onSubmit({value, valid}: {value: User, valid: boolean}) {
-    this.ds.addItem(value);
-    //console.log(value, valid);
+
+    //1. check if we are in edit mode
+    //1.A get the person and see if there is already id key
+    //2. update existing record
+
+    let tmpUser: User = this.ds.checkIfUserExists(value);
+
+    if(tmpUser == null) {
+      console.log("no user");
+    } else {
+      console.log("yes user: " + JSON.stringify(tmpUser));
+    }
+    
+
+    this.ds.manageItem(value);
+    this.userForm.reset();
   }
 
 }

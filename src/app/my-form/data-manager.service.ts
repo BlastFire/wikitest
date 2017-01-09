@@ -7,22 +7,46 @@ import { User } from './user.interface';
 export class DataManagerService {
 
   private data: User[] = [];
-  private subject: Subject<User> = new Subject<User>();
+  private addSubject: Subject<User> = new Subject<User>();
+  private editSubject: Subject<User> = new Subject<User>();
+  private counter: number = 0;
 
   constructor() { }
 
-  addItem(person: User): void {
+  manageItem(person: User, config?: {edit: boolean}): void {
+    if(config) {
+      this.editSubject.next(person);
+      return;
+    }
+    person.id = this.increaseCounter();
     this.data.push(person);
-    this.subject.next(person);
-  }
-
-  getData(): Observable<User> {
-    return this.subject.asObservable();
+    this.addSubject.next(person);
   }
 
   getDataArr(): User[] {
     return this.data;
   }
+
+  getData(config?: {edit: boolean}): Observable<User> {
+    if(config) return this.editSubject.asObservable();
+    return this.addSubject.asObservable();
+  }
+
+  checkIfUserExists(person: User): User {
+    return this.getDataArr().filter(p => {
+      if(person.email === p.email) {
+        return p.id ? true : false;
+      }
+    }).pop();
+   }
+
+  increaseCounter(): number {
+    return ++this.counter;
+  }
+  
+  // get counter(): number {
+  //   return this.counter;
+  // }
 
 
 }

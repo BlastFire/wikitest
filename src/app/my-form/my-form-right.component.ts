@@ -39,8 +39,8 @@ export class MyFormRightComponent implements OnInit {
     });
   }
 
-  crown(e: any) {
-    console.log(e);
+  editRecord(e: User) {
+    this.ds.manageItem(e, {edit: true});
   }
 
 }
