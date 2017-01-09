@@ -49,7 +49,6 @@ export class MyFormLeftBuilderComponent implements OnInit {
     if(tmpUser == null) {
       console.log("no user");
     } else {
-      this.userForm.set
       console.log("yes user: " + this.userForm.invalid);
       
     }
