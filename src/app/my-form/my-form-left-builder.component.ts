@@ -49,7 +49,6 @@ export class MyFormLeftBuilderComponent implements OnInit {
       //patchValue instead ignores non matching keys
       //more info https://toddmotto.com/angular-2-form-controls-patch-value-set-value
       this.userForm.patchValue(person);
-      this.formValueChanged();
     });
 
     //this.userForm.valueChanges.subscribe(data => console.log(data));

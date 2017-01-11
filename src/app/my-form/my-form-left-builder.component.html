@@ -1,18 +1,18 @@
 <div class="test-form-col">
 <form (ngSubmit)="onSubmit(userForm)" [formGroup]="userForm">
     <!-- has-error class puts border over the input -->
-    <div class="form-group col-xs-6" [ngClass]="{'has-error':!userForm.controls['firstname'].valid && userForm.controls['firstname'].touched}">
+    <div class="form-group col-xs-12" [ngClass]="{'has-error':!userForm.controls['firstname'].valid && userForm.controls['firstname'].touched}">
         <label for="firstname">Firstname:</label>
         <input type="text" class="form-control" placeholder="firstname" formControlName="firstname" >
         <div *ngIf="formErrors.firstname" class="alert alert-danger">
             {{ formErrors.firstname }}
         </div>
     </div>
-    <div class="form-group col-xs-6">
+    <div class="form-group col-xs-12">
         <label for="firstname">Lastname:</label>
         <input type="text" class="form-control" placeholder="lastname" id="lastname" formControlName="lastname" >
     </div>
-    <div class="form-group col-xs-6">
+    <div class="form-group col-xs-12" [ngClass]="{'has-error':!userForm.controls['email'].valid && userForm.controls['email'].touched}">
         <label for="email">Email:</label>
         <input type="text" class="form-control" placeholder="email" id="email" formControlName="email" >
         <div *ngIf="formErrors.email" class="alert alert-danger">
@@ -21,7 +21,7 @@
         <!--<div class="alert alert-danger" *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched">Email is required</div>-->
 
     </div>
-    <div class="form-group col-xs-6">
+    <div class="form-group col-xs-12">
         <label for="email">Gender:</label>
         <input type="text" class="form-control" placeholder="gender" id="gender" formControlName="gender" >
     </div>

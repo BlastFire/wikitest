@@ -5,3 +5,15 @@
 .submit-button {
     margin-left: 15px;
 }
+
+.form-group {
+    margin-bottom: 35px;
+    box-sizing: border-box;
+}
+
+.alert {
+    padding: 4px 4px 4px 12px;
+    margin: 0;
+    position: absolute;
+    width: 94.5%;
+}
