@@ -32,9 +32,9 @@ export class DataManagerService {
     return this.addSubject.asObservable();
   }
 
-  checkIfUserExists(person: User): User {
+  checkIfEmailAlreadyExists(email: string): User {
     return this.getDataArr().filter(p => {
-      if(person.email === p.email) {
+      if(email === p.email) {
         return p.id ? true : false;
       }
     }).pop();
@@ -44,9 +44,4 @@ export class DataManagerService {
     return ++this.counter;
   }
   
-  // get counter(): number {
-  //   return this.counter;
-  // }
-
-
 }
