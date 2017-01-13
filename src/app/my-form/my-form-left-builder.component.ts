@@ -65,6 +65,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
         Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"),
         this.duplicateEmailValidator.bind(this)])
       ],
+      date: ''
       //mysel: [this.themes[0]],
     });
 

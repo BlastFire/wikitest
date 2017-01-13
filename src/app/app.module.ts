@@ -17,6 +17,7 @@ import { MyFormLeftComponent } from './my-form/my-form-left.component';
 import { MyFormRightComponent } from './my-form/my-form-right.component';
 import { DataManagerService } from './my-form/data-manager.service';
 import { MyFormLeftBuilderComponent } from './my-form/my-form-left-builder.component';
+import { DatePickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MyFormLeftBuilderComponent } from './my-form/my-form-left-builder.compo
     FormsModule,
     HttpModule,
     JsonpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DatePickerModule
   ],
   providers: [WikiServiceService, HeroService, DataManagerService],
   bootstrap: [AppComponent]
