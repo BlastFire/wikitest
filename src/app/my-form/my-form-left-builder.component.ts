@@ -4,12 +4,6 @@ import { User } from './user.interface';
 import { DataManagerService } from './data-manager.service';
 import { Observable } from 'rxjs/Rx';
 
-export interface Theme {
-    display: string;
-    backgroundColor: string;
-    fontColor: string;
-}
-
 @Component({
   selector: 'app-my-form-left-builder',
   templateUrl: './my-form-left-builder.component.html',
@@ -21,8 +15,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
   formErrors = {
     'firstname': '',
     'lastname': '',
-    'email': '',
-    'gender': ''
+    'email': ''
   };
 
   validationMessages = {
@@ -40,12 +33,6 @@ export class MyFormLeftBuilderComponent implements OnInit {
   }
 
   userForm: FormGroup;
-
-  public themes: { backgroundColor: string, fontColor: string, display: string }[] = [
-    { backgroundColor: 'black', fontColor: 'white', display: 'Dark' },
-    { backgroundColor: 'white', fontColor: 'black', display: 'Light' },
-    { backgroundColor: 'grey', fontColor: 'white', display: 'Sleek' }
-  ];
 
   constructor(private fb: FormBuilder, private ds: DataManagerService) { }
 
@@ -78,8 +65,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
         Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"),
         this.duplicateEmailValidator.bind(this)])
       ],
-      mysel: [this.themes[0]],
-      gender: ['']
+      //mysel: [this.themes[0]],
     });
 
     //subscribes to value changes from inputs
