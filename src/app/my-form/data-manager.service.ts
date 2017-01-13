@@ -43,5 +43,10 @@ export class DataManagerService {
   increaseCounter(): number {
     return ++this.counter;
   }
+
+  deleteRecord(person: User) {
+    this.data = this.getDataArr().filter((p) => p.id != person.id );
+    this.addSubject.next(null);
+  }
   
 }

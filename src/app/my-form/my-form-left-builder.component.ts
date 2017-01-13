@@ -33,6 +33,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
   }
 
   userForm: FormGroup;
+  private person: User;
 
   constructor(private fb: FormBuilder, private ds: DataManagerService) { }
 
@@ -49,6 +50,8 @@ export class MyFormLeftBuilderComponent implements OnInit {
       //patchValue instead ignores non matching keys
       //more info https://toddmotto.com/angular-2-form-controls-patch-value-set-value
       this.userForm.patchValue(person);
+
+      this.person = person;
     });
 
     //this.userForm.valueChanges.subscribe(data => console.log(data));
@@ -105,13 +108,20 @@ export class MyFormLeftBuilderComponent implements OnInit {
 
 
   onSubmit({value, valid}: {value: User, valid: boolean}) {
-
+    //TODO
     //1. check if we are in edit mode
     //1.A get the person and see if there is already id key
     //2. update existing record
 
     this.ds.manageItem(value);
     this.userForm.reset();
+  }
+
+  delete() {
+    //TODO
+    //1. delete record
+    if(this.person)
+      this.ds.deleteRecord(this.person);
   }
   
   /* VALIDATORS */ 
