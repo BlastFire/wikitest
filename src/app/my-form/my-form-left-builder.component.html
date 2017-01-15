@@ -28,7 +28,7 @@
     <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary submit-button">Submit</button>
     <br />
     <br />
-    <div *ngIf="true">
+    <div *ngIf="showDelete()">
         <button type="button" (click)="delete()" class="btn btn-primary submit-button">Delete</button>
     </div>
 </form>

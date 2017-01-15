@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, NgZone } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from './user.interface';
 import { DataManagerService } from './data-manager.service';
@@ -35,7 +35,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
   userForm: FormGroup;
   private person: User;
 
-  constructor(private fb: FormBuilder, private ds: DataManagerService) { }
+  constructor(private fb: FormBuilder, private ds: DataManagerService, private zone:NgZone) { }
 
   ngOnInit() {
     //init the form
@@ -51,7 +51,11 @@ export class MyFormLeftBuilderComponent implements OnInit {
       //more info https://toddmotto.com/angular-2-form-controls-patch-value-set-value
       this.userForm.patchValue(person);
 
+      //set person so we can delete it
       this.person = person;
+
+      //this.zone.run(() => console.log("time travel"));
+
     });
 
     //this.userForm.valueChanges.subscribe(data => console.log(data));
@@ -68,7 +72,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
         Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"),
         this.duplicateEmailValidator.bind(this)])
       ],
-      date: ''
+      //date: ''
       //mysel: [this.themes[0]],
     });
 
@@ -105,8 +109,6 @@ export class MyFormLeftBuilderComponent implements OnInit {
     }
   }
 
-
-
   onSubmit({value, valid}: {value: User, valid: boolean}) {
     //TODO
     //1. check if we are in edit mode
@@ -118,11 +120,30 @@ export class MyFormLeftBuilderComponent implements OnInit {
   }
 
   delete() {
-    //TODO
-    //1. delete record
-    if(this.person)
+    //person object is filled in edit mode ( we can only delete in edit mode )
+    if(this.person) {
       this.ds.deleteRecord(this.person);
+      //clearing the tmp var
+      this.clearingTmpLocalVar();
+      this.userForm.reset();
+    }
   }
+
+  showDelete() {
+    console.log(this.isEmptyObject(this.person));
+    return this.isEmptyObject(this.person);
+  }
+
+  isEmptyObject(obj) {
+    if(obj != null) {
+      return !(Object.keys(obj).length === 0);
+    }
+    return false;
+  } 
+
+  clearingTmpLocalVar() {
+    this.person = null;
+  } 
   
   /* VALIDATORS */ 
 
