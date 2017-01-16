@@ -18,6 +18,8 @@ import { MyFormRightComponent } from './my-form/my-form-right.component';
 import { DataManagerService } from './my-form/data-manager.service';
 import { MyFormLeftBuilderComponent } from './my-form/my-form-left-builder.component';
 import { DatePickerModule } from 'ng2-datepicker';
+import { OutputtestComponent } from './outputtest/outputtest.component';
+import { OutputChildComponent } from './outputtest/output-child.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { DatePickerModule } from 'ng2-datepicker';
     MyFormLeftComponent,
     MyFormRightComponent,
     MyFormLeftBuilderComponent,
+    OutputtestComponent,
+    OutputChildComponent,
   ],
   imports: [
     BrowserModule,
