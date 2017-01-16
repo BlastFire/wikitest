@@ -25,6 +25,9 @@
         <ng2-datepicker formControlName="date"></ng2-datepicker>
     </div>
     -->
+    <div class="form-group col-xs-12">
+        <app-palette-module (dmx)="myValueChanged($event)"></app-palette-module>
+    </div>
     <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary submit-button">Submit</button>
     <br />
     <br />

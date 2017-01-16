@@ -20,6 +20,7 @@ import { MyFormLeftBuilderComponent } from './my-form/my-form-left-builder.compo
 import { DatePickerModule } from 'ng2-datepicker';
 import { OutputtestComponent } from './outputtest/outputtest.component';
 import { OutputChildComponent } from './outputtest/output-child.component';
+import { PaletteModuleModule } from './my-form/palette-module/palette-module.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { OutputChildComponent } from './outputtest/output-child.component';
     MyFormRightComponent,
     MyFormLeftBuilderComponent,
     OutputtestComponent,
-    OutputChildComponent,
+    OutputChildComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,8 @@ import { OutputChildComponent } from './outputtest/output-child.component';
     HttpModule,
     JsonpModule,
     ReactiveFormsModule,
-    DatePickerModule
+    DatePickerModule,
+    PaletteModuleModule
   ],
   providers: [WikiServiceService, HeroService, DataManagerService],
   bootstrap: [AppComponent]

@@ -87,7 +87,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
 
   formValueChanged(data?: any) {
 
-    console.log(JSON.stringify(this.userForm.value));
+    //console.log(JSON.stringify(this.userForm.value));
 
     //console.log(this.userForm.get('email').errors);
     if(!this.userForm) { return; }
@@ -101,7 +101,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
       if(control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for(const key in control.errors) {
-          console.log(control.errors);
+          //console.log(control.errors);
           this.formErrors[field] += messages[key] + ' ';
         }
       }
@@ -130,7 +130,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
   }
 
   showDelete() {
-    console.log(this.isEmptyObject(this.person));
+    //console.log(this.isEmptyObject(this.person));
     return this.isEmptyObject(this.person);
   }
 
@@ -152,6 +152,9 @@ export class MyFormLeftBuilderComponent implements OnInit {
     return(null);
   }
 
+  myValueChanged(event) {
+    console.log("my new component: " + JSON.stringify(event));
+  }
 
   //FUCKTHAT
   // asyncDuplicateFirstNameValidator(control: FormControl): Promise<any> | Observable<any> {
