@@ -152,10 +152,6 @@ export class MyFormLeftBuilderComponent implements OnInit {
     return(null);
   }
 
-  myValueChanged(event) {
-    console.log("my new component: " + JSON.stringify(event));
-  }
-
   //FUCKTHAT
   // asyncDuplicateFirstNameValidator(control: FormControl): Promise<any> | Observable<any> {
 

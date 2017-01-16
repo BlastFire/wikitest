@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class OutputChildComponent implements OnInit {
 
-  @Output() dmx = new EventEmitter();
+  @Output() pOut = new EventEmitter();
 
   constructor() { }
 
@@ -15,7 +15,7 @@ export class OutputChildComponent implements OnInit {
   }
 
   triggerEvent() {
-    this.dmx.emit({value: "event is received"});
+    this.pOut.emit({value: "event is received"});
   }
 
 }
