@@ -1,3 +1,7 @@
   <select multiple (change)="setSelectedP1($event.target)">
     <option *ngFor="let p1 of p1Options" [value]="p1.value">{{p1.name}}</option>
   </select>
+  <span><button type="button" (click)="leftArrow()">Left Arrow</button><button type="button" (click)="rightArrow()">Right Arrow</button></span>
+  <select multiple (change)="setSelectedP2($event.target)">
+    <option *ngFor="let p2 of p2Options" [value]="p2.value">{{p2.name}}</option>
+  </select>
