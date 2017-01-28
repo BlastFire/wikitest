@@ -38,8 +38,8 @@ export class PaletteModuleComponent implements OnInit {
           let optionElement = selectElement.options[i];
           let optionModel = this.p1Options[i];
 
-          if (optionElement.selected == true) { optionModel.selected = true; }
-          else { optionModel.selected = false; }
+          optionModel.selected = optionElement.selected;
+
       }
 
       console.log(this.p1Options);
@@ -50,25 +50,47 @@ export class PaletteModuleComponent implements OnInit {
           let optionElement = selectElement.options[i];
           let optionModel = this.p2Options[i];
 
-          if (optionElement.selected == true) { optionModel.selected = true; }
-          else { optionModel.selected = false; }
+          optionModel.selected = optionElement.selected;
+
+          // if (optionElement.selected == true) { optionModel.selected = true; }
+          // else { optionModel.selected = false; }
       }
 
       console.log(this.p2Options);
   }  
 
   leftArrow() {
-
+    if(this.p2Options.length != 0) {
+      this.p2Options = this.p2Options.filter((obj: VSelectModel) => {
+        if(obj.selected === true) {
+          obj.selected = false;
+          this.p1Options.push(obj);
+          return false;
+        }
+        return true;
+      });
+    }
   }
 
   rightArrow() {
-    //1.vzemi vsichko ot left .. filtrirai po selected i tezi za koito e true gi prehvyrli v dqsnoto.
-    //2. iztrii ot lqvoto prehvyrlenite
-    if(this.p1Options.keys.length != 0) {
+    if(this.p1Options.length != 0) {
       this.p1Options = this.p1Options.filter((obj: VSelectModel) => {
-        
+        if(obj.selected === true) {
+          obj.selected = false;
+          this.p2Options.push(obj);
+          return false;
+        }
+        return true;
       });
     }
+  }
+
+  leftArrowDisabled() {
+    return this.p2Options.length == 0;
+  }
+
+  rightArrowDisabled() {
+    return this.p1Options.length == 0;
   }
 
   onClicked() {
