@@ -72,6 +72,7 @@ export class MyFormLeftBuilderComponent implements OnInit {
         Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"),
         this.duplicateEmailValidator.bind(this)])
       ],
+      palette: [''],
       //date: ''
       //mysel: [this.themes[0]],
     });
@@ -110,13 +111,11 @@ export class MyFormLeftBuilderComponent implements OnInit {
   }
 
   onSubmit({value, valid}: {value: User, valid: boolean}) {
-    //TODO
-    //1. check if we are in edit mode
-    //1.A get the person and see if there is already id key
-    //2. update existing record
 
-    this.ds.manageItem(value);
-    this.userForm.reset();
+    console.log(value);
+
+    //this.ds.manageItem(value);
+    //this.userForm.reset();
   }
 
   delete() {

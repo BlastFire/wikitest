@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface VSelectModel {
   name: string,
@@ -9,9 +10,16 @@ export interface VSelectModel {
 @Component({
   selector: 'app-palette-module',
   templateUrl: './palette-module.component.html',
-  styleUrls: ['./palette-module.component.css']
+  styleUrls: ['./palette-module.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PaletteModuleComponent),
+      multi: true,
+    }
+  ]
 })
-export class PaletteModuleComponent implements OnInit {
+export class PaletteModuleComponent implements OnInit, ControlValueAccessor  {
 
   @Output() dmx = new EventEmitter();
 
@@ -31,15 +39,14 @@ export class PaletteModuleComponent implements OnInit {
        {name: "z0", value: "0", selected: false},
        {name: "z1", value: "1", selected: false}
     ];
+    console.log("init");
   }
 
   setSelectedP1(selectElement) {
       for (let i = 0; i < selectElement.options.length; i++) {
           let optionElement = selectElement.options[i];
           let optionModel = this.p1Options[i];
-
           optionModel.selected = optionElement.selected;
-
       }
 
       console.log(this.p1Options);
@@ -49,11 +56,7 @@ export class PaletteModuleComponent implements OnInit {
       for (let i = 0; i < selectElement.options.length; i++) {
           let optionElement = selectElement.options[i];
           let optionModel = this.p2Options[i];
-
           optionModel.selected = optionElement.selected;
-
-          // if (optionElement.selected == true) { optionModel.selected = true; }
-          // else { optionModel.selected = false; }
       }
 
       console.log(this.p2Options);
@@ -69,6 +72,7 @@ export class PaletteModuleComponent implements OnInit {
         }
         return true;
       });
+      this.propagateChange(JSON.stringify(this.p2Options));
     }
   }
 
@@ -82,6 +86,8 @@ export class PaletteModuleComponent implements OnInit {
         }
         return true;
       });
+
+      this.propagateChange(JSON.stringify(this.p2Options));
     }
   }
 
@@ -93,9 +99,28 @@ export class PaletteModuleComponent implements OnInit {
     return this.p1Options.length == 0;
   }
 
-  onClicked() {
-    this.dmx.emit({crown: "1", blake: "2"});
+  // onClicked() {
+  //   this.dmx.emit({crown: "1", blake: "2"});
+  // }
+
+  // the method set in registerOnChange, it is just 
+  // a placeholder for a method that takes one parameter, 
+  // we use it to emit changes back to the form
+  private propagateChange = (_: any) => { };
+
+  //init value
+  public writeValue(obj: any) {
   }
+
+  // registers 'fn' that will be fired when changes are made
+  // this is how we emit the changes back to the form
+  public registerOnChange(fn: any) {
+      console.log("in register on change " + fn);
+      this.propagateChange = fn;
+      this.propagateChange(JSON.stringify(this.p2Options)); 
+  }
+  // not used, used for touch input
+  public registerOnTouched() { }
 
 
 }
