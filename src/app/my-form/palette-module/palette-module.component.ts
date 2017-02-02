@@ -1,10 +1,19 @@
-import { Component, OnInit, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface VSelectModel {
   name: string,
-  value: string,
-  selected: boolean
+  value: string
+}
+
+export interface PalleteDataWrapper {
+  model:VSelectModel,
+  selected: boolean;
+}
+
+export interface ModelControl {
+   getAllData<T extends PalleteDataWrapper>(obj: T): T;
+   getSelectedData<T extends PaletteModuleComponent>(obj: T): T;
 }
 
 @Component({
@@ -19,89 +28,98 @@ export interface VSelectModel {
     }
   ]
 })
-export class PaletteModuleComponent implements OnInit, ControlValueAccessor  {
+export class PaletteModuleComponent implements OnInit, ControlValueAccessor, ModelControl {
 
-  @Output() dmx = new EventEmitter();
+  @Input() formatted: boolean = false;
 
-  p1Options: VSelectModel[];
-
-  p2Options: VSelectModel[];
+  allAvailData: PalleteDataWrapper[];
+  selectedData: PalleteDataWrapper[];
 
   constructor() { }
 
+  getAllData() {
+    return this.allAvailData;
+  }
+
+  getSelectedData() {
+    return this.selectedData;
+  }
+
   ngOnInit() {
-    this.p1Options = [
-       {name: "v0", value: "0", selected: false},
-       {name: "v1", value: "1", selected: false}
+
+    var a = {name:"b1", value: "0", bla: "bla"};
+
+    this.allAvailData = [
+      {
+      model: a,
+      selected: false
+      },
+      {
+      model: {name: "v1", value: "1"},
+      selected: false
+      }
     ];
 
-    this.p2Options = [
-       {name: "z0", value: "0", selected: false},
-       {name: "z1", value: "1", selected: false}
+    this.selectedData = [
+      {
+      model: {name: "z0", value: "0"},
+      selected: false
+      },
+      {
+      model: {name: "z1", value: "1"},
+      selected: false
+      }
     ];
-    console.log("init");
+
   }
 
   setSelectedP1(selectElement) {
       for (let i = 0; i < selectElement.options.length; i++) {
-          let optionElement = selectElement.options[i];
-          let optionModel = this.p1Options[i];
-          optionModel.selected = optionElement.selected;
+          this.allAvailData[i].selected = selectElement.options[i].selected
       }
-
-      console.log(this.p1Options);
   }
 
   setSelectedP2(selectElement) {
       for (let i = 0; i < selectElement.options.length; i++) {
-          let optionElement = selectElement.options[i];
-          let optionModel = this.p2Options[i];
-          optionModel.selected = optionElement.selected;
+          this.selectedData[i].selected = selectElement.options[i].selected
       }
-
-      console.log(this.p2Options);
   }  
 
-  leftArrow() {
-    if(this.p2Options.length != 0) {
-      this.p2Options = this.p2Options.filter((obj: VSelectModel) => {
+  removeFromSelected() {
+    if(this.selectedData.length != 0) {
+      this.selectedData = this.selectedData.filter((obj: PalleteDataWrapper) => {
         if(obj.selected === true) {
           obj.selected = false;
-          this.p1Options.push(obj);
+          this.allAvailData.push(obj);
           return false;
         }
         return true;
       });
-      this.propagateChange(JSON.stringify(this.p2Options));
+      this.transmutateJson(this.selectedData);
     }
   }
 
-  rightArrow() {
-    if(this.p1Options.length != 0) {
-      this.p1Options = this.p1Options.filter((obj: VSelectModel) => {
+  addToSelected() {
+    if(this.allAvailData.length != 0) {
+      this.allAvailData = this.allAvailData.filter((obj: PalleteDataWrapper) => {
         if(obj.selected === true) {
           obj.selected = false;
-          this.p2Options.push(obj);
+          this.selectedData.push(obj);
           return false;
         }
         return true;
       });
-
-      this.propagateChange(JSON.stringify(this.p2Options));
+      this.transmutateJson(this.selectedData);
     }
   }
 
-  leftArrowDisabled() {
-    return this.p2Options.length == 0;
+  removeFromSelectedButtonDisabled() {
+    return this.selectedData.length == 0;
   }
 
-  rightArrowDisabled() {
-    return this.p1Options.length == 0;
+  addToSelectedButtonDisabled() {
+    return this.allAvailData.length == 0;
   }
-
-  // onClicked() {
-  //   this.dmx.emit({crown: "1", blake: "2"});
-  // }
 
   // the method set in registerOnChange, it is just 
   // a placeholder for a method that takes one parameter, 
@@ -115,12 +133,22 @@ export class PaletteModuleComponent implements OnInit, ControlValueAccessor  {
   // registers 'fn' that will be fired when changes are made
   // this is how we emit the changes back to the form
   public registerOnChange(fn: any) {
-      console.log("in register on change " + fn);
       this.propagateChange = fn;
-      this.propagateChange(JSON.stringify(this.p2Options)); 
+      this.transmutateJson(this.selectedData);
   }
   // not used, used for touch input
   public registerOnTouched() { }
+
+  /**
+   * Helper method for formatting data to json if input property provided
+   */
+  private transmutateJson(obj: PalleteDataWrapper[]):void {
+    if(this.formatted) {
+      this.propagateChange(JSON.stringify(obj));
+    } else {
+      this.propagateChange(obj);
+    }
+  }
 
 
 }

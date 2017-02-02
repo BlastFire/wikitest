@@ -1,10 +1,10 @@
   <select multiple (change)="setSelectedP1($event.target)">
-    <option *ngFor="let p1 of p1Options" [value]="p1.value">{{p1.name}}</option>
+    <option *ngFor="let p1 of getAllData()" [value]="p1.model.value">{{p1.model.name}}</option>
   </select>
   <span>
-    <button type="button" [disabled]="leftArrowDisabled()" (click)="leftArrow()">Left Arrow</button>
-    <button type="button" [disabled]="rightArrowDisabled()" (click)="rightArrow()">Right Arrow</button>
+    <button type="button" [disabled]="removeFromSelectedButtonDisabled()" (click)="removeFromSelected()">Remove</button>
+    <button type="button" [disabled]="addToSelectedButtonDisabled()" (click)="addToSelected()">Add</button>
   </span>
   <select multiple (change)="setSelectedP2($event.target)">
-    <option *ngFor="let p2 of p2Options" [value]="p2.value">{{p2.name}}</option>
+    <option *ngFor="let p2 of getSelectedData()" [value]="p2.model.value">{{p2.model.name}}</option>
   </select>
