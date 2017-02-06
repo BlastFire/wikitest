@@ -21,6 +21,7 @@ import { DatePickerModule } from 'ng2-datepicker';
 import { OutputtestComponent } from './outputtest/outputtest.component';
 import { OutputChildComponent } from './outputtest/output-child.component';
 import { PaletteModuleModule } from './my-form/palette-module/palette-module.module';
+import { TwittertutComponent } from './twittertut/twittertut.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PaletteModuleModule } from './my-form/palette-module/palette-module.mod
     MyFormRightComponent,
     MyFormLeftBuilderComponent,
     OutputtestComponent,
-    OutputChildComponent
+    OutputChildComponent,
+    TwittertutComponent
   ],
   imports: [
     BrowserModule,
