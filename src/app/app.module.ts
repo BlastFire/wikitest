@@ -22,6 +22,16 @@ import { OutputtestComponent } from './outputtest/outputtest.component';
 import { OutputChildComponent } from './outputtest/output-child.component';
 import { PaletteModuleModule } from './my-form/palette-module/palette-module.module';
 import { TwittertutComponent } from './twittertut/twittertut.component';
+import { AngularFireModule, FirebaseListObservable } from 'angularfire2';
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: '<AIzaSyDwV8GTd1f75WNzp9TMUDOkRYg9R3m_UNQ>',
+  authDomain: '<wadapp-aa6c0.firebaseapp.com>',
+  databaseURL: '<https://wadapp-aa6c0.firebaseio.com>',
+  storageBucket: '<wadapp-aa6c0.appspot.com>',
+  messagingSenderId: '<724706126441>'
+};
 
 @NgModule({
   declarations: [
@@ -38,7 +48,7 @@ import { TwittertutComponent } from './twittertut/twittertut.component';
     MyFormLeftBuilderComponent,
     OutputtestComponent,
     OutputChildComponent,
-    TwittertutComponent
+    TwittertutComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +57,8 @@ import { TwittertutComponent } from './twittertut/twittertut.component';
     JsonpModule,
     ReactiveFormsModule,
     DatePickerModule,
-    PaletteModuleModule
+    PaletteModuleModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [WikiServiceService, HeroService, DataManagerService],
   bootstrap: [AppComponent]

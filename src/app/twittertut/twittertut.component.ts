@@ -19,7 +19,7 @@ export class TwittertutComponent implements OnInit {
 
   ngOnInit() {
 
-    var log = (data) => console.log(data);
+    var log = (data) => console.log(data.login);
 
     var refreshButton = document.querySelector('.refresh');
     var closeButton1 = document.querySelector('.close1');
@@ -37,35 +37,56 @@ export class TwittertutComponent implements OnInit {
         return 'https://api.github.com/users?since=' + randomOffset;
       });
 
-    var responseStream = requestStream.flatMap(
+    this.responseStream = requestStream.flatMap(
       (requestUrl) => {
         return this.service.get(requestUrl);
       }
     );
 
+    //BINDING
+    var suggestion1Stream = this.createSuggestionStream(close1ClickStream);
+    var suggestion2Stream = this.createSuggestionStream(close2ClickStream);
+    var suggestion3Stream = this.createSuggestionStream(close3ClickStream);
+
     //RENDERING
+    suggestion1Stream.subscribe((user) => {
+      this.renderSuggestion(user, '.suggestion1');
+    });
+    suggestion2Stream.subscribe((user) => {
+      this.renderSuggestion(user, '.suggestion2');
+    });
+    suggestion3Stream.subscribe((user) => {
+      this.renderSuggestion(user, '.suggestion3');
+    });
 
-    var x = Rx.Observable.of([{"name": "ivan"},{"name": "dragan"}]);
-
-    close1ClickStream.combineLatest(x, (click, zz) => {
-      console.log(click);
-      console.log(zz.length);
-      return click;
-    }).subscribe(log);
-
-    //close1ClickStream.combineLatest(this.responseStream).subscribe(log);
-    
-    //var suggestion1Stream = this.createSuggestionStream(close1ClickStream);
-    //suggestion1Stream.subscribe(log);
   }
 
-  private createSuggestionStream(closeClickStream) {
-    return closeClickStream.startWith('startup click')
-      .combineLatest(this.responseStream, (click, listUsers) => {
-        console.log("listusers " + listUsers);
-        return listUsers[Math.floor(Math.random()*listUsers.length)];
-      }).merge(this.refreshClickStream.map(() => {return null})).startWith(null);
+  private renderSuggestion(user: any, selector: string) {
+    var suggestionElement= <HTMLElement>document.querySelector(selector);
+    if (user === null) {
+      suggestionElement.style.visibility = 'hidden';
+    } else {
+      suggestionElement.style.visibility = 'visible';
+      var userNameElement = <HTMLAnchorElement>suggestionElement.querySelector('.username');
+      userNameElement.textContent = user.login;
+      userNameElement.href = user.html_url;
+       //usernameEl.href = suggestedUser.html_url;
+      var imgElement = suggestionElement.querySelector('img');
+      imgElement.src = "";
+      imgElement.src = user.avatar_url;
+
+    }
+
   }
+
+  private createSuggestionStream(closeClickStream): Observable<{}> {
+    return closeClickStream.startWith('startup click').combineLatest(this.responseStream, (click, zz: Response) => {
+      var z = zz.json();
+      return z[Math.floor(Math.random()*z.length)];
+    }).merge(this.refreshClickStream.map(()=>{return null})).startWith(null);
+   
+  }
+
 
 
 }

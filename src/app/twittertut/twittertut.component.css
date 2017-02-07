@@ -19,6 +19,7 @@ h2 {
 }
 li {
     padding: 5px;
+    border: 1px solid red;
 }
 li img {
     width: 40px;
