@@ -23,6 +23,7 @@ import { OutputChildComponent } from './outputtest/output-child.component';
 import { PaletteModuleModule } from './my-form/palette-module/palette-module.module';
 import { TwittertutComponent } from './twittertut/twittertut.component';
 import { AngularFireModule, FirebaseListObservable } from 'angularfire2';
+import { Rxjst1Component } from './rxjscrap/rxjst1/rxjst1.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -49,6 +50,7 @@ export const firebaseConfig = {
     OutputtestComponent,
     OutputChildComponent,
     TwittertutComponent,
+    Rxjst1Component,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     DatePickerModule,
     PaletteModuleModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    //AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [WikiServiceService, HeroService, DataManagerService],
   bootstrap: [AppComponent]
